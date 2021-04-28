@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineStoreAspCore", "OnlineStoreAspCore\OnlineStoreAspCore.csproj", "{E6926228-6CD9-4B3C-B800-FCF38ADC9529}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Data", "OnlineStore.Models\OnlineStore.Data.csproj", "{9A9947ED-3CD7-4D55-9168-FCC1749AF351}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6926228-6CD9-4B3C-B800-FCF38ADC9529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6926228-6CD9-4B3C-B800-FCF38ADC9529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6926228-6CD9-4B3C-B800-FCF38ADC9529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6926228-6CD9-4B3C-B800-FCF38ADC9529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A9947ED-3CD7-4D55-9168-FCC1749AF351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A9947ED-3CD7-4D55-9168-FCC1749AF351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A9947ED-3CD7-4D55-9168-FCC1749AF351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A9947ED-3CD7-4D55-9168-FCC1749AF351}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B3F44D84-0039-4B66-B971-81E88E05498C}
+	EndGlobalSection
+EndGlobal

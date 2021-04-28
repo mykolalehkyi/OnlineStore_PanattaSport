@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Product list";
+}
+<link href="~/lib/DataTables/datatables.min.css" rel="stylesheet" />
+
+<h2>Product list</h2>
+
+<table id="productTable" class="display">
+    <thead>
+        <tr>
+            <th>ProductId</th>
+            <th>ProductName</th>
+            <th>Width</th>
+            <th>Length</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>StandardLoad</th>
+            <th>OptionalLoad</th>
+        </tr>
+    </thead>
+</table>
+
+@section scripts{ 
+    <script src ="~/lib/DataTables/datatables.min.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $("#productTable").DataTable({
+                "ajax": {
+                    "url": "/Product/GetList",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "productId" },
+                    { "data": "productName" },
+                    { "data": "width" },
+                    { "data": "length" },
+                    { "data": "height" },
+                    { "data": "weight" },
+                    { "data": "standardLoad" },
+                    { "data": "optionalLoad" },
+                ]
+            });
+        });
+    </script>
+}
