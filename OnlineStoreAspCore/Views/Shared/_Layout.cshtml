@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using OnlineStore.Data.Identity
+@using OnlineStore.Data.Models
+
+@inject SignInManager<ApplicationUser> SigninManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,9 +32,20 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
                         </li>
+                        @if (SigninManager.IsSignedIn(User) && User.IsInRole(UserRoles.ADMIN))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-dark" asp-area="Admin" asp-controller="Products" asp-action="Index">Products</a>
+                                </div>
+                            </li>
+                        }
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                        <partial name="_LoginPartial.cshtml"/>
+                        <partial name="_LoginPartial.cshtml" />
                     </ul>
                 </div>
             </div>

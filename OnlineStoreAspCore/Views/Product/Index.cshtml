@@ -1,47 +1,45 @@
-﻿@{
+﻿@using OnlineStore.Data.DTO_ViewModels
+@using System.Linq
+
+@model List<MuscleLoadViewDTO>
+@{
     ViewBag.Title = "Product list";
 }
 <link href="~/lib/DataTables/datatables.min.css" rel="stylesheet" />
 
 <h2>Product list</h2>
+<div class="row">
+    <div class="col-2">
+        <h4>Categories</h4>
+        <hr />
+        <h6>Muscle Load</h6>
+        @foreach (var muscle in Model)
+        {
+            <partial name="_DisplayMuscleLoadCheckboxPartial" model="muscle" />
+        }
+        <button class="btn btn-primary" onclick="pageController.applyCategories()">Apply</button>
+    </div>
+    <div class="col-10">
+        <table id="productTable" class="display">
+            <thead>
+                <tr>
+                    <th>ProductId</th>
+                    <th>ProductName</th>
+                    <th>Width</th>
+                    <th>Length</th>
+                    <th>Height</th>
+                    <th>Weight</th>
+                    <th>StandardLoad</th>
+                    <th>OptionalLoad</th>
+                </tr>
+            </thead>
+        </table>
 
-<table id="productTable" class="display">
-    <thead>
-        <tr>
-            <th>ProductId</th>
-            <th>ProductName</th>
-            <th>Width</th>
-            <th>Length</th>
-            <th>Height</th>
-            <th>Weight</th>
-            <th>StandardLoad</th>
-            <th>OptionalLoad</th>
-        </tr>
-    </thead>
-</table>
+    </div>
+</div>
 
 @section scripts{ 
     <script src ="~/lib/DataTables/datatables.min.js"></script>
     
-    <script>
-        $(document).ready(function () {
-            $("#productTable").DataTable({
-                "ajax": {
-                    "url": "/Product/GetList",
-                    "type": "GET",
-                    "datatype": "json"
-                },
-                "columns": [
-                    { "data": "productId" },
-                    { "data": "productName" },
-                    { "data": "width" },
-                    { "data": "length" },
-                    { "data": "height" },
-                    { "data": "weight" },
-                    { "data": "standardLoad" },
-                    { "data": "optionalLoad" },
-                ]
-            });
-        });
-    </script>
+    <script src="~/js/Product/productIndex.js"></script>
 }

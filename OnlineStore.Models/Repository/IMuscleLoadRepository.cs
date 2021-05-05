@@ -5,8 +5,7 @@ using System.Text;
 
 namespace OnlineStore.Data.Repository
 {
-    public interface IProductRepository : IRepository<Product>
+    public interface IMuscleLoadRepository : IRepository<MuscleLoad>
     {
-        IEnumerable<Product> GetProductsWithMuscleLoad(List<int> muscleIds);
     }
 }

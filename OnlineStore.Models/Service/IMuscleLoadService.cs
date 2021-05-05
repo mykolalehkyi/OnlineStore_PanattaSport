@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Data.Service
 {
-    public interface IProductService
+    public interface IMuscleLoadService
     {
-        List<ProductViewDTO> GetAllProducts();
-
-        List<ProductViewDTO> GetProductCategorized(List<int> muscleLoadIds);
+        List<MuscleLoadViewDTO> GetAllMuscleLoad();
     }
 }

@@ -24,5 +24,11 @@ namespace OnlineStore.Data.ServiceImplementation
             List<Product> listProduct = unitOfWork.Product.GetAll().ToList();
             return mapper.Map<List<Product>, List<ProductViewDTO>>(listProduct);
         }
+
+        public List<ProductViewDTO> GetProductCategorized(List<int> muscleLoadIds)
+        {
+            List<Product> listProductCategorized = unitOfWork.Product.GetProductsWithMuscleLoad(muscleLoadIds).ToList();
+            return mapper.Map<List<Product>, List<ProductViewDTO>>(listProductCategorized);
+        }
     }
 }

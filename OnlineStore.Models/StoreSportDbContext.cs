@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using OnlineStore.Data.Config;
 using OnlineStore.Data.Identity;
 using OnlineStore.Data.Models;
 
@@ -44,6 +45,7 @@ namespace OnlineStore.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.SeedRoles();
             modelBuilder.Entity<ProductFrame>(entity =>
             {
                 entity.HasKey(e => new { e.ProductId, e.FrameId });

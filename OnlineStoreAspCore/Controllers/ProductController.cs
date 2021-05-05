@@ -1,29 +1,39 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OnlineStore.Data.DTO_ViewModels;
 using OnlineStore.Data.Service;
+using System.Collections.Generic;
 
 namespace OnlineStoreAspCore.Controllers
 {
     public class ProductController : Controller
     {
         private readonly IProductService productService;
+        private readonly IMuscleLoadService  muscleLoadService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IMuscleLoadService muscleLoadService)
         {
             this.productService = productService;
+            this.muscleLoadService = muscleLoadService;
         }
 
         // GET: ProductController
         public ActionResult Index()
         {
-            return View();
+            return View(muscleLoadService.GetAllMuscleLoad());
         }
 
-        //List<MucleLoad> list
-        public ActionResult GetList()
+        public ActionResult GetList(CategoriesProductRequestDTO categoriesProductRequestDTO)
         {
+
             var productList = productService.GetAllProducts();
-            //var productList = productService.GetProductsThatMuscleList(list);
+            return Json(new { data = productList });
+        }
+
+        [HttpPost]
+        public ActionResult GetListCategorized(List<int> muscleLoadIds)
+        {
+            var productList = productService.GetProductCategorized(muscleLoadIds);
             return Json(new { data = productList });
         }
 

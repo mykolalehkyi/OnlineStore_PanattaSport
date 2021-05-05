@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnlineStore.Data;
 using OnlineStore.Data.HelpTools;
+using OnlineStore.Data.Identity;
 using OnlineStore.Data.Repository;
 using OnlineStore.Data.RepositoryImplementation;
 using OnlineStore.Data.Service;
@@ -24,13 +26,14 @@ namespace OnlineStoreAspCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddDbContext<StoreSportDbContext>();
             services.AddAutoMapper(typeof(MapperProfile));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IMuscleLoadService, MuscleLoadService>();
 
         }
 
@@ -58,8 +61,12 @@ namespace OnlineStoreAspCore
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "MyArea",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }
