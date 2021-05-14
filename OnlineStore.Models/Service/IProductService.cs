@@ -8,8 +8,12 @@ namespace OnlineStore.Data.Service
 {
     public interface IProductService
     {
-        List<ProductViewDTO> GetAllProducts();
+        List<AdminProductViewDTO> GetAllProducts();
+        List<ProductViewDTO> GetAllActiveProducts();
 
-        List<ProductViewDTO> GetProductCategorized(List<int> muscleLoadIds);
+        List<ProductViewDTO> GetActiveProductCategorized(List<int> muscleLoadIds);
+
+        public void DeactivateProduct(int id);
+        public void ActivateProduct(int id);
     }
 }

@@ -5,19 +5,12 @@
 @{
     ViewBag.Title = "Product list";
 }
-<link href="~/lib/DataTables/datatables.min.css" rel="stylesheet" />
 
 <h2>Product list</h2>
 <div class="row">
     <div class="col-2">
-        <h4>Categories</h4>
-        <hr />
-        <h6>Muscle Load</h6>
-        @foreach (var muscle in Model)
-        {
-            <partial name="_DisplayMuscleLoadCheckboxPartial" model="muscle" />
-        }
-        <button class="btn btn-primary" onclick="pageController.applyCategories()">Apply</button>
+        <partial name="_DisplayMuscleLoadCheckboxPartial" model="Model" />
+        <button class="btn btn-primary" onclick="productIndexPageController.applyCategories()">Apply</button>
     </div>
     <div class="col-10">
         <table id="productTable" class="display">
@@ -39,7 +32,6 @@
 </div>
 
 @section scripts{ 
-    <script src ="~/lib/DataTables/datatables.min.js"></script>
     
     <script src="~/js/Product/productIndex.js"></script>
 }

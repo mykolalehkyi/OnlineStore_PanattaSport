@@ -19,16 +19,38 @@ namespace OnlineStore.Data.ServiceImplementation
             this.mapper = mapper;
         }
 
-        public List<ProductViewDTO> GetAllProducts()
+        public List<AdminProductViewDTO> GetAllProducts()
         {
             List<Product> listProduct = unitOfWork.Product.GetAll().ToList();
+            return mapper.Map<List<Product>, List<AdminProductViewDTO>>(listProduct);
+        }
+
+        public List<ProductViewDTO> GetAllActiveProducts()
+        {
+            List<Product> listProduct = unitOfWork.Product.GetAllActiveProducts().ToList();
             return mapper.Map<List<Product>, List<ProductViewDTO>>(listProduct);
         }
 
-        public List<ProductViewDTO> GetProductCategorized(List<int> muscleLoadIds)
+        public List<ProductViewDTO> GetActiveProductCategorized(List<int> muscleLoadIds)
         {
-            List<Product> listProductCategorized = unitOfWork.Product.GetProductsWithMuscleLoad(muscleLoadIds).ToList();
+            List<Product> listProductCategorized = unitOfWork.Product.GetActiveProductsWithMuscleLoad(muscleLoadIds).ToList();
             return mapper.Map<List<Product>, List<ProductViewDTO>>(listProductCategorized);
+        }
+
+        public void DeactivateProduct(int id)
+        {
+            var product = unitOfWork.Product.Find(id);
+            product.Disabled = true;
+            unitOfWork.Product.Update(product);
+            unitOfWork.Complete();
+        }
+
+        public void ActivateProduct(int id)
+        {
+            var product = unitOfWork.Product.Find(id);
+            product.Disabled = false;
+            unitOfWork.Product.Update(product);
+            unitOfWork.Complete();
         }
     }
 }

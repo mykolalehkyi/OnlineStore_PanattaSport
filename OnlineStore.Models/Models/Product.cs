@@ -29,6 +29,7 @@ namespace OnlineStore.Data.Models
         public int? Weight { get; set; }
         public int? StandardLoad { get; set; }
         public int? OptionalLoad { get; set; }
+        public bool Disabled { get; set; }
 
         [InverseProperty("Product")]
         public virtual ICollection<ProductFrame> ProductFrame { get; set; }

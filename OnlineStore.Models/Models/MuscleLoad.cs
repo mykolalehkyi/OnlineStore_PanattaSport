@@ -20,6 +20,7 @@ namespace OnlineStore.Data.Models
         public int MuscleLoadId { get; set; }
         [StringLength(255)]
         public string MuscleName { get; set; }
+        public bool Disabled { get; set; }
 
         [InverseProperty("MuscleLoad")]
         public virtual ICollection<ProductMuscleLoad> ProductMuscleLoad { get; set; }

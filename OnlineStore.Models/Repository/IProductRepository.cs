@@ -7,6 +7,7 @@ namespace OnlineStore.Data.Repository
 {
     public interface IProductRepository : IRepository<Product>
     {
-        IEnumerable<Product> GetProductsWithMuscleLoad(List<int> muscleIds);
+        IEnumerable<Product> GetActiveProductsWithMuscleLoad(List<int> muscleIds);
+        IEnumerable<Product> GetAllActiveProducts();
     }
 }

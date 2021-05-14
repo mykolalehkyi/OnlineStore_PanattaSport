@@ -1,5 +1,4 @@
-﻿
-class ProductIndexPageController {
+﻿class ProductIndexPageController {
     datatable;
     tableData;
 
@@ -74,4 +73,4 @@ class CategoriesProductRequestDTO {
     muscleLoadIds:number[];
 }
 
-let pageController = new ProductIndexPageController();
+let productIndexPageController = new ProductIndexPageController();

@@ -10,6 +10,8 @@ namespace OnlineStore.Data.HelpTools
         {
             CreateMap<Product, ProductViewDTO>();
             CreateMap<ProductViewDTO, Product>();
+            CreateMap<Product, AdminProductViewDTO>();
+            CreateMap<AdminProductViewDTO, Product>();
             CreateMap<MuscleLoad, MuscleLoadViewDTO>();
             CreateMap<MuscleLoadViewDTO, MuscleLoad>();
         }

@@ -10,7 +10,10 @@ let filePaths = {
 gulp.task('build-ts', () => {
     return gulp.src(filePaths.tsInputPath)
         .pipe(gulp_ts({
-            target: "es6"
+            "module": "es2015",
+            "target": "es2015",
+            "sourceMap": true,
+            "moduleResolution": "classic"
         }))
         .pipe(gulp.dest(filePaths.tsOutputPath));
 })

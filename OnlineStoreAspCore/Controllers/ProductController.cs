@@ -23,17 +23,17 @@ namespace OnlineStoreAspCore.Controllers
             return View(muscleLoadService.GetAllMuscleLoad());
         }
 
-        public ActionResult GetList(CategoriesProductRequestDTO categoriesProductRequestDTO)
+        public ActionResult GetList()
         {
 
-            var productList = productService.GetAllProducts();
+            var productList = productService.GetAllActiveProducts();
             return Json(new { data = productList });
         }
 
         [HttpPost]
         public ActionResult GetListCategorized(List<int> muscleLoadIds)
         {
-            var productList = productService.GetProductCategorized(muscleLoadIds);
+            var productList = productService.GetActiveProductCategorized(muscleLoadIds);
             return Json(new { data = productList });
         }
 

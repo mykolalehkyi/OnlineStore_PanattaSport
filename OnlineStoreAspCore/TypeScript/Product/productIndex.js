@@ -65,5 +65,5 @@ var CategoriesProductRequestDTO = /** @class */ (function () {
     }
     return CategoriesProductRequestDTO;
 }());
-var pageController = new ProductIndexPageController();
+var productIndexPageController = new ProductIndexPageController();
 //# sourceMappingURL=productIndex.js.map

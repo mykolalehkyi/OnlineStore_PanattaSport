@@ -17,14 +17,19 @@ namespace OnlineStore.Data.RepositoryImplementation
             this.context = context;
         }
 
-        public IEnumerable<Product> GetProductsWithMuscleLoad(List<int> muscleLoadIds)
+        public IEnumerable<Product> GetAllActiveProducts()
+        {
+            return context.Product.Where(x => x.Disabled == false);
+        }
+
+        public IEnumerable<Product> GetActiveProductsWithMuscleLoad(List<int> muscleLoadIds)
         {
             return context.Product
                 .Include(x => x.ProductMuscleLoad)
                     .ThenInclude(y => y.MuscleLoad)
-                .Where(x => x.ProductMuscleLoad
-                                .Any(y => muscleLoadIds
-                                            .Contains(y.MuscleLoad.MuscleLoadId)));
+                .Where(x => (x.Disabled == false) && 
+                            (x.ProductMuscleLoad.Any(y => muscleLoadIds.Contains(y.MuscleLoad.MuscleLoadId)))
+                       );
         }
     }
 }

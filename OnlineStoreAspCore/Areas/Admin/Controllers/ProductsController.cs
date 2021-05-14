@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineStore.Data;
 using OnlineStore.Data.Models;
+using OnlineStore.Data.Service;
 
 namespace OnlineStoreAspCore.Areas.Admin.Controllers
 {
@@ -15,17 +16,25 @@ namespace OnlineStoreAspCore.Areas.Admin.Controllers
     [Authorize(Roles = UserRoles.ADMIN)]
     public class ProductsController : Controller
     {
+        private readonly IProductService productService;
         private readonly StoreSportDbContext _context;
 
-        public ProductsController(StoreSportDbContext context)
+        public ProductsController(IProductService productService, StoreSportDbContext context)
         {
+            this.productService = productService;
             _context = context;
         }
 
         // GET: Admin/Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Product.ToListAsync());
+            return View();
+        }
+
+        public ActionResult GetList()
+        {
+            var productList = productService.GetAllProducts();
+            return Json(new { data = productList });
         }
 
         // GET: Admin/Products/Details/5
@@ -151,6 +160,20 @@ namespace OnlineStoreAspCore.Areas.Admin.Controllers
         private bool ProductExists(int id)
         {
             return _context.Product.Any(e => e.ProductId == id);
+        }
+
+        [HttpPut]
+        public IActionResult DeactivateProduct(int id)
+        {
+            productService.DeactivateProduct(id);
+            return Json(new { success = true, message = "Deactivation successful" });
+        }
+
+        [HttpPut]
+        public IActionResult ActivateProduct(int id)
+        {
+            productService.ActivateProduct(id);
+            return Json(new { success = true, message = "Activation successful" });
         }
     }
 }

@@ -60,4 +60,4 @@ class ProductIndexPageController {
 }
 class CategoriesProductRequestDTO {
 }
-let pageController = new ProductIndexPageController();
+let productIndexPageController = new ProductIndexPageController();

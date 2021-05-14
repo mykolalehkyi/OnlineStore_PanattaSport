@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="TypeScript\Admin\Products\adminProductsIndex.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="jquery.dataTables.TypeScript.DefinitelyTyped" Version="0.6.7" />
@@ -37,10 +41,12 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Identity\Data\" />
-    <Folder Include="TypeScript\Admin\Products\" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="TypeScript\Admin\Products\adminProductsIndex.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="TypeScript\Product\productIndex.ts" />
   </ItemGroup>
 

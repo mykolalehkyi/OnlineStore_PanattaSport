@@ -1,8 +1,16 @@
-﻿@model OnlineStore.Data.DTO_ViewModels.MuscleLoadViewDTO
+﻿@using OnlineStore.Data.DTO_ViewModels
 
-<div class="form-check">
-    <input class="form-check-input checkbox-muscle-load" type="checkbox" id="@Model.MuscleName@Model.MuscleLoadId" value="@Model.MuscleLoadId">
-    <label class="form-check-label" for="@Model.MuscleName@Model.MuscleLoadId">
-        @Model.MuscleName
-    </label>
-</div>
+@model List<MuscleLoadViewDTO>
+
+<h4>Categories</h4>
+<hr />
+<h6>Muscle Load</h6>
+@foreach (var muscle in Model)
+{
+    <div class="form-check">
+        <input class="form-check-input checkbox-muscle-load" type="checkbox" id="@muscle.MuscleName@muscle.MuscleLoadId" value="@muscle.MuscleLoadId">
+        <label class="form-check-label" for="@muscle.MuscleName@muscle.MuscleLoadId">
+            @muscle.MuscleName
+        </label>
+    </div>
+}
