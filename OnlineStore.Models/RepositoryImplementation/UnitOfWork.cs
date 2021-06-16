@@ -12,12 +12,16 @@ namespace OnlineStore.Data.RepositoryImplementation
         public IProductRepository Product { get; private set; }
 
         public IMuscleLoadRepository MuscleLoad { get; private set; }
+        public IOrdersRepository Orders { get; private set; }
+        public IOrderDetailsRepository OrderDetails { get; private set; }
 
         public UnitOfWork(StoreSportDbContext context)
         {
             this.context = context;
             Product = new ProductRepository(context);
             MuscleLoad = new MuscleLoadRepository(context);
+            Orders = new OrdersRepository(context);
+            OrderDetails = new OrderDetailsRepository(context);
         }
 
         public int Complete()

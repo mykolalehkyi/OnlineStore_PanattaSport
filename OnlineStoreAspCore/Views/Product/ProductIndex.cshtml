@@ -1,7 +1,7 @@
 ﻿@using OnlineStore.Data.DTO_ViewModels
 @using System.Linq
 
-@model List<MuscleLoadViewDTO>
+@model List<AdminMuscleLoadViewDTO>
 @{
     ViewBag.Title = "Product list";
 }
@@ -10,13 +10,13 @@
 <div class="row">
     <div class="col-2">
         <partial name="_DisplayMuscleLoadCheckboxPartial" model="Model" />
-        <button class="btn btn-primary" onclick="productIndexPageController.applyCategories()">Apply</button>
     </div>
     <div class="col-10">
         <table id="productTable" class="display">
             <thead>
                 <tr>
-                    <th>ProductId</th>
+                    <th>Action</th>
+                    <th>Image</th>
                     <th>ProductName</th>
                     <th>Width</th>
                     <th>Length</th>
@@ -24,10 +24,10 @@
                     <th>Weight</th>
                     <th>StandardLoad</th>
                     <th>OptionalLoad</th>
+                    <th></th>
                 </tr>
             </thead>
         </table>
-
     </div>
 </div>
 

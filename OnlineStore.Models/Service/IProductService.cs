@@ -15,5 +15,6 @@ namespace OnlineStore.Data.Service
 
         public void DeactivateProduct(int id);
         public void ActivateProduct(int id);
+        ProductDetailsDTO GetProductDetailsById(int id);
     }
 }

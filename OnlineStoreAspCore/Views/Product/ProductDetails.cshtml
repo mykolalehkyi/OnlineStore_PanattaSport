@@ -1,0 +1,99 @@
+﻿@using OnlineStore.Data.DTO_ViewModels
+@model OnlineStore.Data.DTO_ViewModels.ProductDetailsDTO
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details @Model.ProductName</h1>
+
+<div>
+    <h4>Technical specification</h4>
+    <div class="row">
+        <div class="col col-6">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-4">Width:</div>
+                        <div class="col">@Model.Width</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-4">Height:</div>
+                        <div class="col">@Model.Height</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-4">Length:</div>
+                        <div class="col">@Model.Length</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-4">StandardLoad:</div>
+                        <div class="col">@Model.StandardLoad</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-4">OptionalLoad:</div>
+                        <div class="col">@Model.OptionalLoad</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-4">Main target muscles:</div>
+                        <div class="col">
+                            @foreach (var muscleLoadName in Model.MuscleLoadNames)
+                            {
+                                <strong>@muscleLoadName</strong>
+                                <br />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="row">
+                        <div class="col h4 text-danger font-weight-bold">Price: @Model.Price</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col">
+                    <div class="row">
+                        <div class="col h4 text-danger">
+                            <button class="btn btn-success btn-lg btn-block btn-add-to-cart" data-id="@Model.ProductId"><img src="https://img.icons8.com/pastel-glyph/64/000000/fast-cart.png" width="20" />Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-6">
+            <img src="@Url.Content(Model.ImagePath)" width="400" height="400" />
+        </div>
+    </div>
+    <hr />
+</div>
+<div>
+    <a asp-controller="Product" asp-action="Index" class="btn btn bg-secondary text-white">Back to List</a>
+</div>
+
+@section scripts{
+
+    <script src="~/js/Product/productDetails.js"></script>
+}

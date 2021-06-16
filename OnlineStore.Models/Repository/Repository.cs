@@ -47,6 +47,7 @@ namespace OnlineStore.Data.Repository
         public void Update(TEntity entity)
         {
             Context.Entry(entity).State = EntityState.Modified;
+            Context.SaveChanges();
         }
 
         public void Remove(TEntity entity)

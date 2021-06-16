@@ -1,0 +1,32 @@
+﻿@model IEnumerable<OnlineStore.Data.DTO_ViewModels.ShoppingCartDTO>
+@{
+    ViewBag.Title = "ShoppingCart";
+}
+
+<h1>ShoppingCart</h1>
+<p>
+    <input type="button" id="btnConfirmCart" class="btn btn-success" value="Confirm Order" />
+    <input type="button" id="btnClearCart" class="btn btn-danger" value="Clear Order" />
+</p>
+
+<table class="display" id="shoppingCartTable">
+    <thead>
+        <tr>
+            <th>ProductId</th>
+            <th>ProductName</th>
+            <th>Quantity</th>
+            <th>UnitPrice</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th colspan="4" class="text-right">Total:</th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+
+@section scripts{
+    <script src="~/js/ShoppingCart/shoppingCartIndex.js"></script>
+}

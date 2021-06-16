@@ -17,5 +17,6 @@ namespace OnlineStore.Data.DTO_ViewModels
         public int? Weight { get; set; }
         public int? StandardLoad { get; set; }
         public int? OptionalLoad { get; set; }
+        public string ImagePath { get; set; }
     }
 }

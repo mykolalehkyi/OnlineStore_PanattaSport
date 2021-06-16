@@ -1,0 +1,17 @@
+﻿@using OnlineStore.Data.Config
+@using Microsoft.AspNetCore.Http
+
+<li class="nav-item">
+    @{int? counter = Context.Session.GetInt32(SessionConstants.CARTCOUNTER);}
+    @if (counter == null)
+    {
+        <a class="nav-link text-white" asp-area="" asp-controller="ShoppingCart" asp-action="Index"><nobr><img src="https://img.icons8.com/pastel-glyph/64/000000/fast-cart.png" width="20px" style="filter: invert(1);"/>&nbsp;<span id="shoppingCartNav">Cart</span></nobr></a>
+    }
+    else
+    {
+        string cart = "Cart("+counter+")";
+        <a class="nav-link text-white" asp-area="" asp-controller="ShoppingCart" asp-action="Index"><nobr><img src="https://img.icons8.com/pastel-glyph/64/000000/fast-cart.png" width="20px" style="filter: invert(1);" />&nbsp;<span id="shoppingCartNav">@cart</span></nobr></a>
+    }
+</li>
+
+

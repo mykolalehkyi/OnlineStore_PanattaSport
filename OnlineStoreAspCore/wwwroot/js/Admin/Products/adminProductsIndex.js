@@ -28,7 +28,7 @@ class AdminProductIndexPageController {
                             return `<button class="btn btn-danger" onclick="adminProductIndexPageController.deactivateProduct('Products/DeactivateProduct?id=${row.productId}')" >Deactivate</button>`;
                         }
                         else {
-                            return `<button class="btn btn-success" onclick="adminProductIndexPageController.deactivateProduct('Products/ActivateProduct?id=${row.productId}')" >Activate</button>`;
+                            return `<button class="btn btn-success" onclick="adminProductIndexPageController.activateProduct('Products/ActivateProduct?id=${row.productId}')" >Activate</button>`;
                         }
                         return data;
                     }
@@ -36,8 +36,8 @@ class AdminProductIndexPageController {
                 {
                     "data": "productId",
                     "render": function (data) {
-                        return `<a href="Products/Edit?id=${data}" class="btn btn-info">Edit</a>
-                        <a href="Products/Details?id=${data}" class="btn btn-primary">Details</a>`;
+                        return `<nobr><a href="Products/Edit?id=${data}" class="btn btn-primary">✎</a>
+                        <a href="Products/Details?id=${data}" class="btn btn-info">📝</a></nobr>`;
                     }
                 }
             ]
@@ -56,8 +56,24 @@ class AdminProductIndexPageController {
             success: function (data) {
                 if (data.success) {
                     alert(data.message);
-                    this.datatable = $("#productTable").DataTable();
-                    this.datatable.ajax.reload();
+                    let datatable = $("#productTable").DataTable();
+                    datatable.ajax.reload();
+                }
+                else {
+                    alert(data.message);
+                }
+            }
+        });
+    }
+    activateProduct(url) {
+        $.ajax({
+            type: "PUT",
+            url: url,
+            success: function (data) {
+                if (data.success) {
+                    alert(data.message);
+                    let datatable = $("#productTable").DataTable();
+                    datatable.ajax.reload();
                 }
                 else {
                     alert(data.message);
@@ -67,3 +83,4 @@ class AdminProductIndexPageController {
     }
 }
 let adminProductIndexPageController = new AdminProductIndexPageController();
+//# sourceMappingURL=adminProductsIndex.js.map

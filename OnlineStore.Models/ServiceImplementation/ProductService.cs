@@ -19,6 +19,14 @@ namespace OnlineStore.Data.ServiceImplementation
             this.mapper = mapper;
         }
 
+        public ProductDetailsDTO GetProductDetailsById(int id)
+        {
+            Product product = unitOfWork.Product.GetProductByIdWithMuscleLoad(id).First();
+            ProductDetailsDTO productDetailsDTO = mapper.Map<Product, ProductDetailsDTO>(product);
+            productDetailsDTO.MuscleLoadNames = product.ProductMuscleLoad.Select(x => x.MuscleLoad.MuscleName).ToList();
+            return productDetailsDTO;
+        }
+
         public List<AdminProductViewDTO> GetAllProducts()
         {
             List<Product> listProduct = unitOfWork.Product.GetAll().ToList();

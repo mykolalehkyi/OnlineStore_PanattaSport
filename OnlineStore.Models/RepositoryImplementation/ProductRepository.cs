@@ -31,5 +31,13 @@ namespace OnlineStore.Data.RepositoryImplementation
                             (x.ProductMuscleLoad.Any(y => muscleLoadIds.Contains(y.MuscleLoad.MuscleLoadId)))
                        );
         }
+
+        public IQueryable<Product> GetProductByIdWithMuscleLoad(int id)
+        {
+            return context.Product
+                .Include(x => x.ProductMuscleLoad)
+                    .ThenInclude(y => y.MuscleLoad)
+                .Where(x => x.ProductId == id);
+        }
     }
 }

@@ -8,6 +8,29 @@
 
     init(): void {
         this.initDataTable();
+        this.initButtons();
+    }
+    initButtons() {
+        $("#buttonCategories").click(() => productIndexPageController.applyCategories());
+
+        $(document).on('click', '.btn-add-to-cart', function () {
+            let productId = $(this).data("id");
+            let formData = new FormData();
+            formData.append("productId", productId);
+            $.ajax({
+                url: "ShoppingCart/AddToCart",
+                method: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (dataResponse) {
+                    if (dataResponse.success) {
+                        alert(dataResponse.message);
+                        shoppingCartSharedPartialController.setCounterCart(dataResponse.counter);
+                    }
+                }
+            });
+        });
     }
 
     initDataTable(): void {
@@ -20,7 +43,18 @@
                 "data": this.tableData
             },
             "columns": [
-                { "data": "productId" },
+                {
+                    "data": "productId",
+                    "render": function (data, type, row) {
+                        return `<button class="btn btn-primary btn-sm btn-add-to-cart" data-id="${data}" ><nobr>Add to Cart</nobr></button>`
+                    }
+                },
+                {
+                    "data": "imagePath",
+                    "render": function (data: string, type, row) {
+                        return `<img src="${data.slice(1)}" width = "100px" height = "100px" />`;
+                    }
+                },
                 { "data": "productName" },
                 { "data": "width" },
                 { "data": "length" },
@@ -28,6 +62,12 @@
                 { "data": "weight" },
                 { "data": "standardLoad" },
                 { "data": "optionalLoad" },
+                {
+                    "data": "productId",
+                    "render": function (data: string, type, row) {
+                        return `<a href="Product/Details?id=${data}" class="btn btn-info"><nobr>More info</nobr></a>`;
+                    }
+                }
             ]
         });
     }
@@ -39,7 +79,7 @@
         return checkedArray;
     }
 
-    createCategoriesProductRequestDTO():CategoriesProductRequestDTO {
+    createCategoriesProductRequestDTO(): CategoriesProductRequestDTO {
         let muscleLoadRequestDTO = new CategoriesProductRequestDTO();
         muscleLoadRequestDTO.muscleLoadIds = this.getMuscleLoadCheckedValues();
         return muscleLoadRequestDTO;
@@ -67,10 +107,15 @@
         this.datatable.rows.add(dataToTable.data); // Add new data
         this.datatable.columns.adjust().draw(); // Redraw the DataTable
     }
+
+    refreshDataTable() {
+        let datatable = $("#productTable").DataTable();
+        datatable.ajax.reload();
+    }
 }
 
 class CategoriesProductRequestDTO {
-    muscleLoadIds:number[];
+    muscleLoadIds: number[];
 }
 
 let productIndexPageController = new ProductIndexPageController();

@@ -30,6 +30,8 @@ namespace OnlineStore.Data.Models
         public int? StandardLoad { get; set; }
         public int? OptionalLoad { get; set; }
         public bool Disabled { get; set; }
+        public decimal Price { get; set; }
+        public string ImagePath { get; set; }
 
         [InverseProperty("Product")]
         public virtual ICollection<ProductFrame> ProductFrame { get; set; }

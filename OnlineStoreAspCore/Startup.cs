@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using OnlineStore.Data;
 using OnlineStore.Data.HelpTools;
@@ -11,6 +13,7 @@ using OnlineStore.Data.Repository;
 using OnlineStore.Data.RepositoryImplementation;
 using OnlineStore.Data.Service;
 using OnlineStore.Data.ServiceImplementation;
+using System;
 
 namespace OnlineStoreAspCore
 {
@@ -26,6 +29,10 @@ namespace OnlineStoreAspCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession();
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddDbContext<StoreSportDbContext>();
@@ -34,6 +41,9 @@ namespace OnlineStoreAspCore
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IMuscleLoadService, MuscleLoadService>();
+            services.AddScoped<IShoppingCartService, ShoppingCartService>();
+
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
         }
 
@@ -57,6 +67,8 @@ namespace OnlineStoreAspCore
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

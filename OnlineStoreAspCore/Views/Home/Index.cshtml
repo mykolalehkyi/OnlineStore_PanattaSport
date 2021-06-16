@@ -1,8 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "_LayoutContainerFluid";
 }
+<link href="~/css/index.css" rel="stylesheet" />
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container-for-text">
+    <span>Best GYM Equipment</span>
+    <br />
+    <span>Light PANNATTA</span>
 </div>
+
+
+
+@section scripts{
+    <script src="~/js/index.js"></script>
+}

@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "MuscleLoad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>MuscleLoad</h1>
+
+<p>
+    <a id="createNew" class="btn btn-primary">Create New</a>
+</p>
+<table class="display" id="muscleLoadTable">
+
+    <thead>
+        <tr>
+            <th>MuscleLoadId</th>
+            <th>MuscleName</th>
+            <th>Disabled</th>
+        </tr>
+    </thead>
+</table>
+     @section scripts{
+    <script src="~/js/Admin/MuscleLoad/adminMuscleLoadIndex.js"></script>
+}

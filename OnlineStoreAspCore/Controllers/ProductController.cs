@@ -20,13 +20,13 @@ namespace OnlineStoreAspCore.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
-            return View(muscleLoadService.GetAllMuscleLoad());
+            return View("ProductIndex", muscleLoadService.GetAllMuscleLoad());
         }
 
         public ActionResult GetList()
         {
 
-            var productList = productService.GetAllActiveProducts();
+            List<ProductViewDTO> productList = productService.GetAllActiveProducts();
             return Json(new { data = productList });
         }
 
@@ -40,7 +40,16 @@ namespace OnlineStoreAspCore.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            ProductDetailsDTO productDetailsDTO = productService.GetProductDetailsById(id);
+            if (productDetailsDTO == null)
+            {
+                return NotFound();
+            }
+            return View("ProductDetails", productDetailsDTO);
         }
 
         // GET: ProductController/Create

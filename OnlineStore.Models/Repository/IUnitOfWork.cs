@@ -8,6 +8,8 @@ namespace OnlineStore.Data.Repository
     {
         public IProductRepository Product { get; }
         public IMuscleLoadRepository MuscleLoad { get; }
+        public IOrdersRepository Orders { get; }
+        public IOrderDetailsRepository OrderDetails { get; }
 
         public int Complete();
     }

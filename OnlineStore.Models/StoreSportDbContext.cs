@@ -33,6 +33,8 @@ namespace OnlineStore.Data
         public virtual DbSet<ProductPadding> ProductPadding { get; set; }
         public virtual DbSet<ProductTexture> ProductTexture { get; set; }
         public virtual DbSet<Texture> Texture { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

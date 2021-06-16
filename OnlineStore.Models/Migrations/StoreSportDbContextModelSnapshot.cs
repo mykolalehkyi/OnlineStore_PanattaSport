@@ -49,14 +49,14 @@ namespace OnlineStore.Data.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "6d5453c3-0040-4051-9dae-5d17f4ff8751",
+                            ConcurrencyStamp = "5c907950-8a6c-480a-94a7-89ee31a41310",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "88cddc52-af9e-4ce0-909f-4253f91db8ff",
+                            ConcurrencyStamp = "771dd0ae-0c76-4561-9d1b-d50b34e7b527",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -275,6 +275,60 @@ namespace OnlineStore.Data.Migrations
                     b.ToTable("MuscleLoad");
                 });
 
+            modelBuilder.Entity("OnlineStore.Data.Models.OrderDetails", b =>
+                {
+                    b.Property<int>("OrderDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("OrdersOrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("OrderDetailId");
+
+                    b.HasIndex("OrdersOrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("OnlineStore.Data.Models.Orders", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("OnlineStore.Data.Models.Padding", b =>
                 {
                     b.Property<int>("PaddingId")
@@ -304,11 +358,17 @@ namespace OnlineStore.Data.Migrations
                     b.Property<int?>("Height")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("Length")
                         .HasColumnType("int");
 
                     b.Property<int?>("OptionalLoad")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(255)")
@@ -453,6 +513,28 @@ namespace OnlineStore.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineStore.Data.Models.OrderDetails", b =>
+                {
+                    b.HasOne("OnlineStore.Data.Models.Orders", "Orders")
+                        .WithMany()
+                        .HasForeignKey("OrdersOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineStore.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineStore.Data.Models.Orders", b =>
+                {
+                    b.HasOne("OnlineStore.Data.Identity.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("OnlineStore.Data.Models.ProductFrame", b =>

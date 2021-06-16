@@ -6,7 +6,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210518085755_Order_OrderDetails.cs" />
+    <Compile Remove="Migrations\20210518085755_Order_OrderDetails.Designer.cs" />
+    <Compile Remove="Migrations\20210518090135_Order_OrderDetails.cs" />
+    <Compile Remove="Migrations\20210518090135_Order_OrderDetails.Designer.cs" />
+    <Compile Remove="Migrations\20210518092354_AddOrdersOrdersDetails.cs" />
+    <Compile Remove="Migrations\20210518092354_AddOrdersOrdersDetails.Designer.cs" />
+    <Compile Remove="Migrations\20210518092551_AddOrdersOrdersDetails.cs" />
+    <Compile Remove="Migrations\20210518092551_AddOrdersOrdersDetails.Designer.cs" />
+    <Compile Remove="Migrations\20210518092952_AddOrdersOrdersDetails.cs" />
+    <Compile Remove="Migrations\20210518092952_AddOrdersOrdersDetails.Designer.cs" />
+    <Compile Remove="Migrations\20210518093339_AddOrdersOrdersDetails.cs" />
+    <Compile Remove="Migrations\20210518093339_AddOrdersOrdersDetails.Designer.cs" />
+    <Compile Remove="Migrations\20210518110228_intToStringOrderNumber.cs" />
+    <Compile Remove="Migrations\20210518110228_intToStringOrderNumber.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.13">
       <PrivateAssets>all</PrivateAssets>
