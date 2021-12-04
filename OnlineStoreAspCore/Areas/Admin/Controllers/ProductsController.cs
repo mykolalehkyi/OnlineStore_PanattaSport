@@ -66,7 +66,7 @@ namespace OnlineStoreAspCore.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Width,Length,Height,Weight,StandardLoad,OptionalLoad")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Width,Length,Height,Weight,StandardLoad,OptionalLoad,Price,ImagePath")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace OnlineStoreAspCore.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Width,Length,Height,Weight,StandardLoad,OptionalLoad")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Width,Length,Height,Weight,StandardLoad,OptionalLoad,Price,ImagePath")] Product product)
         {
             if (id != product.ProductId)
             {

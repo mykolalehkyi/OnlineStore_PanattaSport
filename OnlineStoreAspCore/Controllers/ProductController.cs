@@ -20,7 +20,7 @@ namespace OnlineStoreAspCore.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
-            return View("ProductIndex", muscleLoadService.GetAllMuscleLoad());
+            return View("ProductIndex", muscleLoadService.GetAllActiveMuscleLoad());
         }
 
         public ActionResult GetList()

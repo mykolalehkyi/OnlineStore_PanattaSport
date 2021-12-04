@@ -10,6 +10,7 @@ namespace OnlineStore.Data.Service
     public interface IMuscleLoadService
     {
         List<AdminMuscleLoadViewDTO> GetAllMuscleLoad();
+        List<AdminMuscleLoadViewDTO> GetAllActiveMuscleLoad();
         void DeactivateMuscleLoad(int id);
         void ActivateMuscleLoad(int id);
         void updateMuscleLoad(AdminMuscleLoadEditDTO adminMuscleLoadEditDTO);

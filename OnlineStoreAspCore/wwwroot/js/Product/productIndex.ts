@@ -52,7 +52,8 @@
                 {
                     "data": "imagePath",
                     "render": function (data: string, type, row) {
-                        return `<img src="${data.slice(1)}" width = "100px" height = "100px" />`;
+                        let imagePath = data != null ? data.slice(1) : "";
+                        return `<img src="${imagePath}" width = "100px" height = "100px" />`;
                     }
                 },
                 { "data": "productName" },

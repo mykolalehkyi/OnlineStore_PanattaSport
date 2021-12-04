@@ -56,5 +56,11 @@ namespace OnlineStore.Data.ServiceImplementation
             unitOfWork.MuscleLoad.Add(muscleLoad);
             unitOfWork.Complete();
         }
+
+        public List<AdminMuscleLoadViewDTO> GetAllActiveMuscleLoad()
+        {
+            List<MuscleLoad> listMuscleLoad = unitOfWork.MuscleLoad.GetAllActiveMuscleLoad().ToList();
+            return mapper.Map<List<MuscleLoad>, List<AdminMuscleLoadViewDTO>>(listMuscleLoad);
+        }
     }
 }

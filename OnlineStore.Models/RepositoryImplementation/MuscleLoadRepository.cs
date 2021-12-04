@@ -16,5 +16,10 @@ namespace OnlineStore.Data.RepositoryImplementation
         {
             this.context = context;
         }
+
+        public IQueryable<MuscleLoad> GetAllActiveMuscleLoad()
+        {
+            return context.MuscleLoad.Where(x => x.Disabled == false);
+        }
     }
 }

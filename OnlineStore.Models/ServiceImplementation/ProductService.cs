@@ -41,7 +41,16 @@ namespace OnlineStore.Data.ServiceImplementation
 
         public List<ProductViewDTO> GetActiveProductCategorized(List<int> muscleLoadIds)
         {
-            List<Product> listProductCategorized = unitOfWork.Product.GetActiveProductsWithMuscleLoad(muscleLoadIds).ToList();
+            List<Product> listProductCategorized;
+            if (muscleLoadIds.Count > 0)
+            {
+                listProductCategorized = unitOfWork.Product.GetActiveProductsWithMuscleLoad(muscleLoadIds).ToList();
+
+            }
+            else
+            {
+                listProductCategorized = unitOfWork.Product.GetAllActiveProducts().ToList();
+            }
             return mapper.Map<List<Product>, List<ProductViewDTO>>(listProductCategorized);
         }
 
